@@ -125,6 +125,3 @@ jupyter notebook Financial_Transaction_Fraud_Detection_PySpark.ipynb
 ## 📜 Academic Attribution
 - **Institution:** School of Computer Science & Engineering, Lovely Professional University
 - **Course Code:** INT315 — Capstone Project Report
-- **Student:** Paras Rajput (Reg. No: 12304811)
-- **Supervisor:** Miss Zeenat Zehra, Assistant Professor
-- **Dataset:** [ULB Machine Learning Group - Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
