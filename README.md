@@ -1,24 +1,29 @@
 # Financial Transaction Fraud Detection using PySpark
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPARAS-RAJPUT%2FFinancial-Transaction-Fraud-Detection-PySpark)
 [![Apache Spark](https://img.shields.io/badge/Apache_Spark-3.5.3-E25A1C?logo=apachespark&logoColor=white)](https://spark.apache.org/)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PySpark MLlib](https://img.shields.io/badge/PySpark-MLlib-brightgreen)](https://spark.apache.org/mllib/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-A high-performance distributed machine learning and anomaly detection system for credit card fraud screening using **Apache Spark 3.5.3** and **PySpark MLlib**. Designed to handle extreme class imbalance (**577 : 1** ratio) across **284,807 European cardholder transactions**.
+A high-performance distributed machine learning and anomaly detection system for credit card fraud screening using **Apache Spark 3.5.3** and **PySpark MLlib**, featuring a **live interactive web frontend deployable on Vercel in 1 click**. Designed to handle extreme class imbalance (**577 : 1** ratio) across **284,807 European cardholder transactions**.
 
 ---
 
-## 🌟 Key Highlights
+## 🌐 Live Web Frontend (Vercel Deployable)
 
-- **Distributed Big Data Architecture:** Built on Apache Spark DataFrame APIs and MLlib Pipelines (`VectorAssembler`, `StandardScaler`).
-- **Cost-Sensitive Asymmetric Loss:** Dynamically weights classes ($w_0 \approx 0.50$, $w_1 \approx 289.44$) to penalize missed frauds 577x more heavily than false alarms without relying on synthetic oversampling (SMOTE).
-- **Hybrid Machine Learning Models:**
-  - **Logistic Regression (Weighted):** Linear baseline optimizing weighted cross-entropy.
-  - **Decision Tree Classifier:** Non-linear decision rules minimizing Gini impurity.
-  - **Linear Support Vector Machine (LinearSVC):** Maximum margin hyperplane with cost-sensitive hinge loss.
-  - **K-Means Anomaly Scorer ($k=4$):** Unsupervised distance-to-centroid scoring for zero-day fraud discovery.
-- **Academic Capstone Deliverables:** Complete report formatted in Lovely Professional University (LPU) Capstone Project Report standards with embedded outputs, visualizations, and an executable Jupyter Notebook.
+The project includes an interactive web dashboard (`index.html` + `vercel.json`) featuring:
+1. **Real-Time Fraud Simulator:** Sliders for Amount, Time, and top PCA features ($V_{14}, V_{10}, V_{12}, V_{17}, V_4, V_7, V_{11}, V_3$).
+2. **Instant Model Scoring:** Standardizes inputs using the exact Spark `StandardScaler` and computes fraud probabilities via cost-weighted `LogisticRegressionModel`.
+3. **Interactive Decision Gauge:** Live risk meter displaying `APPROVE TRANSACTION` vs `WARNING: 2FA REQUIRED` vs `ALERT: FRAUD DETECTED - TRANSACTION BLOCKED`.
+4. **Model Comparison Hub:** Interactive benchmark matrix, metric bar charts, and confusion matrix cards for all 4 models.
+5. **Direct Capstone Report Download:** One-click download of the 23-page `CAPSTONE_PROJECT_REPORT.pdf`.
+
+### 🚀 Deploy to Vercel in 60 Seconds:
+1. Open [vercel.com/new](https://vercel.com/new) and log in with your GitHub account.
+2. Select and import repository: `PARAS-RAJPUT/Financial-Transaction-Fraud-Detection-PySpark`.
+3. Keep default settings (Root directory: `./`) and click **Deploy**!
+4. Your live app will be published instantly with a free `.vercel.app` URL.
 
 ---
 
@@ -39,6 +44,10 @@ A high-performance distributed machine learning and anomaly detection system for
 
 ```
 .
+├── index.html                              # Production Vercel interactive frontend
+├── vercel.json                             # Vercel deployment & routing configuration
+├── model_params.json                       # Serialized weights, intercepts, and scalers
+├── sample_transactions.json                # Pre-extracted test cases (frauds and normal)
 ├── CAPSTONE_PROJECT_REPORT.pdf             # Formatted academic project report (23 pages)
 ├── CAPSTONE_PROJECT_REPORT.md              # Complete report in Markdown format
 ├── CAPSTONE_PROJECT_REPORT.html            # Standalone printable HTML report
@@ -55,10 +64,11 @@ A high-performance distributed machine learning and anomaly detection system for
 │   ├── logistic_regression_model/          # Serialized Logistic Regression model
 │   └── metrics_summary.json                # Benchmark metrics summary in JSON
 ├── scripts/
-│   ├── create_notebook.py                  # Generates the notebook structure
-│   ├── download_data.py                    # Dataset downloader
+│   ├── build_frontend.py                   # Generates the Vercel HTML frontend
+│   ├── export_model_params.py              # Exports Spark weights to JSON
+│   ├── extract_samples.py                  # Extracts realistic test cases
 │   ├── train_and_evaluate.py               # Master distributed training & evaluation script
-│   ├── build_full_report_html.py           # HTML report builder
+│   ├── download_data.py                    # Dataset downloader
 │   └── export_pdf.py                       # Headless Edge PDF exporter
 └── visualizations/
     ├── 01_class_imbalance.png              # Linear & log scale class distribution
@@ -74,51 +84,29 @@ A high-performance distributed machine learning and anomaly detection system for
 
 ## 🚀 Quickstart Guide
 
-### 1. Prerequisites
-- **Python 3.10+** (64-bit)
-- **Java SE Development Kit 8 (or 11/17)**
-- **Git**
-
-### 2. Installation
+### 1. Run the Frontend Locally
+Simply open `index.html` in your web browser or start a local server:
 ```bash
-git clone https://github.com/<your-username>/Financial-Transaction-Fraud-Detection-PySpark.git
-cd Financial-Transaction-Fraud-Detection-PySpark
+python -m http.server 3000
+```
+Then navigate to `http://localhost:3000`.
 
-# Install dependencies
+### 2. Run Distributed PySpark Training Pipeline
+```bash
+# 1. Install dependencies
 pip install pyspark==3.5.3 findspark numpy pandas matplotlib seaborn scikit-learn
-```
 
-### 3. Download the Dataset
-```bash
+# 2. Download the Kaggle dataset
 python scripts/download_data.py
-```
-*(Downloads the 143.8 MB Kaggle Credit Card Fraud dataset into `data/creditcard.csv`)*
 
-### 4. Run Distributed PySpark Training & Evaluation
-```bash
+# 3. Train models and generate benchmarks
 python scripts/train_and_evaluate.py
 ```
 
-### 5. Launch Interactive Jupyter Notebook
+### 3. Launch Interactive Jupyter Notebook
 ```bash
 jupyter notebook Financial_Transaction_Fraud_Detection_PySpark.ipynb
 ```
-
----
-
-## 📈 Visualizations
-
-| Class Imbalance (577:1) | Correlation Matrix |
-| :---: | :---: |
-| ![Class Imbalance](visualizations/01_class_imbalance.png) | ![Correlation](visualizations/02_correlation_heatmap.png) |
-
-| Confusion Matrices | ROC & PR Curves |
-| :---: | :---: |
-| ![Confusion Matrices](visualizations/03_confusion_matrices.png) | ![ROC Curves](visualizations/04_roc_pr_curves.png) |
-
-| K-Means Unsupervised Anomaly Boundary | Feature Importance |
-| :---: | :---: |
-| ![K-Means Clusters](visualizations/06_kmeans_anomaly_clusters.png) | ![Feature Importance](visualizations/07_feature_importance.png) |
 
 ---
 
