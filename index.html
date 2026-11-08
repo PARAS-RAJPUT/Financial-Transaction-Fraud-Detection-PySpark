@@ -39,7 +39,6 @@
         .risk-gauge {
             transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.5s ease;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -84,17 +83,14 @@
                 <button onclick="switchTab('imbalance')" id="tab-btn-imbalance" class="px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">
                     <i class="fa-solid fa-scale-unbalanced mr-2"></i>Data & Imbalance
                 </button>
-                <button onclick="switchTab('report')" id="tab-btn-report" class="px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">
-                    <i class="fa-solid fa-file-pdf mr-2"></i>Capstone Report
+                <button onclick="switchTab('architecture')" id="tab-btn-architecture" class="px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-800/60">
+                    <i class="fa-solid fa-network-wired mr-2"></i>Spark Architecture
                 </button>
             </nav>
 
             <div class="flex items-center space-x-3">
-                <a href="CAPSTONE_PROJECT_REPORT.pdf" download="CAPSTONE_PROJECT_REPORT.pdf" class="inline-flex items-center px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors">
-                    <i class="fa-solid fa-download mr-1.5"></i>PDF Report
-                </a>
-                <a href="https://github.com/PARAS-RAJPUT/Financial-Transaction-Fraud-Detection-PySpark" target="_blank" class="p-2 text-slate-400 hover:text-white transition-colors" title="View Source on GitHub">
-                    <i class="fa-brands fa-github text-xl"></i>
+                <a href="https://github.com/PARAS-RAJPUT/Financial-Transaction-Fraud-Detection-PySpark" target="_blank" class="inline-flex items-center px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 border border-slate-700 hover:bg-slate-700 transition-colors">
+                    <i class="fa-brands fa-github mr-1.5 text-sm"></i>GitHub Repo
                 </a>
             </div>
         </div>
@@ -118,10 +114,10 @@
                         </div>
                         <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Financial Transaction Fraud Simulator</h1>
                         <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-                            Simulate credit card transactions and evaluate real-time fraud probability against the cost-weighted PySpark Logistic Regression model (<span class="text-indigo-400 font-mono">ROC-AUC: 0.9750</span>, <span class="text-emerald-400 font-mono">Recall: 82.52%</span>).
+                            Simulate incoming transactions and test the real-time scoring engine powered by our PySpark cost-weighted model (<span class="text-indigo-400 font-mono">ROC-AUC: 0.9750</span>, <span class="text-emerald-400 font-mono">Recall: 82.52%</span>).
                         </p>
                     </div>
-                    <!-- Quick Preset Dropdown -->
+                    <!-- Quick Preset Buttons -->
                     <div class="flex flex-col gap-2">
                         <label class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Quick Presets</label>
                         <div class="flex flex-wrap gap-2">
@@ -152,7 +148,7 @@
                             <h2 class="text-base font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-sliders text-indigo-400"></i> Transaction Attributes
                             </h2>
-                            <span class="text-xs text-slate-400">Inputs auto-standardized with Spark StandardScaler</span>
+                            <span class="text-xs text-slate-400">Features standardized with Spark StandardScaler</span>
                         </div>
 
                         <!-- Amount & Time Primary Inputs -->
@@ -172,7 +168,7 @@
 
                             <div class="glass-card p-4 rounded-xl border border-slate-800">
                                 <div class="flex justify-between items-center mb-1">
-                                    <label class="text-xs font-medium text-slate-300">Elapsed Time (s)</label>
+                                    <label class="text-xs font-medium text-slate-300">Elapsed Time (seconds)</label>
                                     <span id="label-time" class="text-xs font-bold text-cyan-400 font-mono">9,064 s</span>
                                 </div>
                                 <input type="range" id="input-time" min="0" max="172800" step="100" value="9064" oninput="updatePrediction()" class="w-full accent-cyan-400 h-2 bg-slate-700 rounded-lg cursor-pointer">
@@ -217,7 +213,7 @@
                     <div id="decision-card" class="glass-panel p-6 rounded-2xl border border-rose-500/40 relative overflow-hidden transition-all duration-500">
                         <div id="decision-glow" class="absolute -top-12 -right-12 w-48 h-48 bg-rose-500/20 rounded-full blur-3xl pointer-events-none transition-all duration-500"></div>
 
-                        <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Transaction Assessment</div>
+                        <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Automated Fraud Triage Decision</div>
 
                         <!-- Gauge & Probability Display -->
                         <div class="flex items-center justify-center py-4">
@@ -270,7 +266,7 @@
                             <i class="fa-solid fa-server text-cyan-400"></i> PySpark MLlib Pipeline Specs
                         </div>
                         <div class="text-slate-400 leading-relaxed">
-                            Feature vector passes through <span class="text-slate-200 font-mono">VectorAssembler(30)</span> followed by z-score standardization via <span class="text-slate-200 font-mono">StandardScaler(withMean=True, withStd=True)</span>. Cost-sensitive inverse loss weighting (<span class="text-indigo-400 font-mono">289.44x</span>) compensates for 577:1 imbalance.
+                            Feature vector passes through <span class="text-slate-200 font-mono">VectorAssembler(30)</span> followed by z-score standardization via <span class="text-slate-200 font-mono">StandardScaler</span>. Cost-sensitive inverse loss weighting (<span class="text-indigo-400 font-mono">289.44x</span>) compensates for extreme 577:1 imbalance.
                         </div>
                     </div>
                 </div>
@@ -487,51 +483,40 @@
         </section>
 
         <!-- ============================================================== -->
-        <!-- TAB 4: CAPSTONE REPORT & NOTEBOOK -->
+        <!-- TAB 4: SPARK ARCHITECTURE -->
         <!-- ============================================================== -->
-        <section id="tab-report" class="hidden space-y-6">
-            <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold tracking-tight">Academic Capstone Project Report</h2>
-                    <p class="text-slate-400 text-sm mt-1">
-                        Course Code: <strong class="text-slate-200">INT315</strong> • Lovely Professional University, Phagwara, Punjab
-                    </p>
-                </div>
-                <div class="flex flex-wrap gap-2.5">
-                    <a href="CAPSTONE_PROJECT_REPORT.pdf" download class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all shadow-lg shadow-emerald-600/30 flex items-center gap-2">
-                        <i class="fa-solid fa-file-arrow-down"></i> Download PDF Report (23 Pages)
-                    </a>
-                    <a href="https://github.com/PARAS-RAJPUT/Financial-Transaction-Fraud-Detection-PySpark/blob/main/Financial_Transaction_Fraud_Detection_PySpark.ipynb" target="_blank" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all border border-slate-700 flex items-center gap-2">
-                        <i class="fa-solid fa-book-open"></i> View Jupyter Notebook
-                    </a>
-                </div>
+        <section id="tab-architecture" class="hidden space-y-6">
+            <div class="glass-panel p-6 rounded-2xl border border-slate-800">
+                <h2 class="text-2xl font-bold tracking-tight">Distributed Spark System Architecture</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    End-to-end distributed ML architecture built with PySpark SQL, DataFrame APIs, and MLlib Pipelines.
+                </p>
             </div>
 
-            <!-- Chapters Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-                <div class="glass-card p-4 rounded-xl border border-slate-800">
-                    <div class="font-bold text-indigo-400 mb-1">Chapter 1: Introduction</div>
-                    <p class="text-slate-400 leading-relaxed">Background of financial payments, CNP fraud risks, motivation, 5 measurable objectives (O1–O5), and distributed system scope.</p>
+            <!-- Architecture Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold">1</div>
+                    <div class="font-bold text-white text-sm">Distributed Ingestion</div>
+                    <p class="text-slate-400 leading-relaxed">Parallel reading of 284,807 CSV rows into memory partitions across multi-threaded local/cluster workers with zero null values.</p>
                 </div>
-                <div class="glass-card p-4 rounded-xl border border-slate-800">
-                    <div class="font-bold text-indigo-400 mb-1">Chapter 3: Existing System</div>
-                    <p class="text-slate-400 leading-relaxed">Comprehensive comparison matrix of legacy rule engines, single-node Scikit-Learn scripts, and commercial black-boxes.</p>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold">2</div>
+                    <div class="font-bold text-white text-sm">MLlib Feature Pipeline</div>
+                    <p class="text-slate-400 leading-relaxed">Chains <code class="font-mono text-slate-200">VectorAssembler</code> (30 continuous features) and <code class="font-mono text-slate-200">StandardScaler</code> into a reusable, reproducible pipeline transformer.</p>
                 </div>
-                <div class="glass-card p-4 rounded-xl border border-slate-800">
-                    <div class="font-bold text-indigo-400 mb-1">Chapter 6: System Design</div>
-                    <p class="text-slate-400 leading-relaxed">Four-tier distributed architecture, PySpark MLlib Pipeline specs, sequence diagrams, and 3 pseudocode algorithms.</p>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold">3</div>
+                    <div class="font-bold text-white text-sm">Cost-Weighted Training</div>
+                    <p class="text-slate-400 leading-relaxed">Concurrently fits Logistic Regression (w_loss), Decision Tree (Gini), Linear SVM, and K-Means centroid clustering in memory.</p>
                 </div>
-                <div class="glass-card p-4 rounded-xl border border-slate-800">
-                    <div class="font-bold text-indigo-400 mb-1">Chapter 7: Testing</div>
-                    <p class="text-slate-400 leading-relaxed">15 rigorous functional test cases (TC-01 to TC-15) covering schema, weights, PCA splits, and AUC metrics with 100% pass rate.</p>
-                </div>
-                <div class="glass-card p-4 rounded-xl border border-slate-800">
-                    <div class="font-bold text-indigo-400 mb-1">Chapter 8: Results Analysis</div>
-                    <p class="text-slate-400 leading-relaxed">Algorithmic benchmark matrix, confusion matrix heatmaps, ROC/PR curves, K-Means PCA clustering, and feature importance.</p>
-                </div>
-                <div class="glass-card p-4 rounded-xl border border-slate-800">
-                    <div class="font-bold text-indigo-400 mb-1">Chapter 11: .ipynb Code &amp; Outputs</div>
-                    <p class="text-slate-400 leading-relaxed">Full verbatim notebook transcript containing every code cell alongside its printed Apache Spark execution logs and DataFrame outputs.</p>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">4</div>
+                    <div class="font-bold text-white text-sm">Real-Time Scoring Engine</div>
+                    <p class="text-slate-400 leading-relaxed">Evaluates transactions against serialized model parameters, outputting risk probabilities and automated block/allow decisions.</p>
                 </div>
             </div>
         </section>
@@ -730,7 +715,6 @@
             document.getElementById("metric-anomaly").innerHTML = `d = ${distProxy.toFixed(1)} (${isAnomaly ? '&gt;' : '&le;'} 12.2)`;
 
             // SVG Gauge Circle
-            // 263.89 is circumference of r=42
             const offset = 263.89 * (1 - prob);
             const circle = document.getElementById("gauge-circle");
             circle.style.strokeDashoffset = offset;
@@ -785,7 +769,7 @@
         }
 
         function switchTab(tabId) {
-            ['scanner', 'models', 'imbalance', 'report'].forEach(t => {
+            ['scanner', 'models', 'imbalance', 'architecture'].forEach(t => {
                 const sec = document.getElementById('tab-' + t);
                 const btn = document.getElementById('tab-btn-' + t);
                 if (t === tabId) {
