@@ -1,0 +1,69 @@
+{
+    "timestamp": "2026-10-24 17:28:41",
+    "dataset": {
+        "total_records": 284807,
+        "legitimate_records": 284315,
+        "fraudulent_records": 492,
+        "fraud_percentage": 0.1727,
+        "imbalance_ratio": 577.88,
+        "train_records": 228225,
+        "test_records": 56582,
+        "train_fraud": 389,
+        "test_fraud": 103
+    },
+    "anomaly_threshold_kmeans": 12.1889,
+    "benchmark_metrics": {
+        "Logistic Regression": {
+            "TP": 85,
+            "FP": 564,
+            "TN": 55915,
+            "FN": 18,
+            "Accuracy": 0.9897140433353363,
+            "Precision": 0.13097072419106318,
+            "Recall": 0.8252427184466019,
+            "F1": 0.22606382978723405,
+            "ROC_AUC": 0.9750457984469523,
+            "PR_AUC": 0.6394844341629178,
+            "TrainTime": 14.965237140655518
+        },
+        "Decision Tree": {
+            "TP": 72,
+            "FP": 17,
+            "TN": 56462,
+            "FN": 31,
+            "Accuracy": 0.9991516736771412,
+            "Precision": 0.8089887640449438,
+            "Recall": 0.6990291262135923,
+            "F1": 0.75,
+            "ROC_AUC": 0.7471788208247175,
+            "PR_AUC": 0.5966066510536863,
+            "TrainTime": 4.801312208175659
+        },
+        "Linear SVM": {
+            "TP": 85,
+            "FP": 640,
+            "TN": 55839,
+            "FN": 18,
+            "Accuracy": 0.9883708599908098,
+            "Precision": 0.11724137931034483,
+            "Recall": 0.8252427184466019,
+            "F1": 0.20531400966183574,
+            "ROC_AUC": 0.9758747860060365,
+            "PR_AUC": 0.600091271710357,
+            "TrainTime": 15.12938928604126
+        },
+        "K-Means Anomaly Detector": {
+            "TP": 69,
+            "FP": 844,
+            "TN": 55635,
+            "FN": 34,
+            "Accuracy": 0.9844826976777067,
+            "Precision": 0.0755750273822563,
+            "Recall": 0.6699029126213593,
+            "F1": 0.13582677165354332,
+            "ROC_AUC": 0.9406993268569447,
+            "PR_AUC": 0.18103218847907615,
+            "TrainTime": 8.881649255752563
+        }
+    }
+}
