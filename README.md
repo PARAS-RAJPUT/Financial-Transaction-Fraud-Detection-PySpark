@@ -19,12 +19,6 @@ The project includes an interactive web dashboard (`index.html` + `vercel.json`)
 4. **Model Comparison Hub:** Interactive benchmark matrix, metric bar charts, and confusion matrix cards for all 4 models.
 5. **Direct Capstone Report Download:** One-click download of the 23-page `CAPSTONE_PROJECT_REPORT.pdf`.
 
-### 🚀 Deploy to Vercel in 60 Seconds:
-1. Open [vercel.com/new](https://vercel.com/new) and log in with your GitHub account.
-2. Select and import repository: `PARAS-RAJPUT/Financial-Transaction-Fraud-Detection-PySpark`.
-3. Keep default settings (Root directory: `./`) and click **Deploy**!
-4. Your live app will be published instantly with a free `.vercel.app` URL.
-
 ---
 
 ## 📊 Benchmark Results (Test Partition: 56,582 Records, 103 Frauds)
