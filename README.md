@@ -10,7 +10,7 @@ A high-performance distributed machine learning and anomaly detection system for
 
 ---
 
-## 🌐 Live Web Frontend (Vercel Deployable)
+## 🌐 Live Web Frontend (Inference)
 
 The project includes an interactive web dashboard (`index.html` + `vercel.json`) featuring:
 1. **Real-Time Fraud Simulator:** Sliders for Amount, Time, and top PCA features ($V_{14}, V_{10}, V_{12}, V_{17}, V_4, V_7, V_{11}, V_3$).
