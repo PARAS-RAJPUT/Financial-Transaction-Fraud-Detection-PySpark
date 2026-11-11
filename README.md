@@ -48,9 +48,6 @@ The project includes an interactive web dashboard (`index.html` + `vercel.json`)
 ├── vercel.json                             # Vercel deployment & routing configuration
 ├── model_params.json                       # Serialized weights, intercepts, and scalers
 ├── sample_transactions.json                # Pre-extracted test cases (frauds and normal)
-├── CAPSTONE_PROJECT_REPORT.pdf             # Formatted academic project report (23 pages)
-├── CAPSTONE_PROJECT_REPORT.md              # Complete report in Markdown format
-├── CAPSTONE_PROJECT_REPORT.html            # Standalone printable HTML report
 ├── Financial_Transaction_Fraud_Detection_PySpark.ipynb  # Primary executed Jupyter Notebook
 ├── notebooks/
 │   └── Financial_Transaction_Fraud_Detection_PySpark.ipynb
